@@ -93,7 +93,8 @@ HELP;
         $commandOutput = array_map(
             function ($row) {
                 return explode("\t", $row);
-            }, $commandOutput
+            },
+            $commandOutput
         );
 
         $table = new Table($output);
@@ -108,5 +109,4 @@ HELP;
     {
         return function_exists('exec') && $this->getApplication()->bootstrapOxid();
     }
-
 }

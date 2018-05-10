@@ -15,7 +15,7 @@ use Symfony\Component\Yaml\Yaml;
  * YAML file containing the values per shop id. The format is e.g.
  * config:
  *   1:
- *     blReverseProxyActive: 
+ *     blReverseProxyActive:
  *      variableType: bool
  *      variableValue: false
  *    # simple string type
@@ -44,7 +44,7 @@ class MultiSetCommand extends Command
             ->setDescription('Sets multiple config values from yaml file')
             ->addArgument('configfile', InputArgument::REQUIRED, 'The file containing the config values, see malls.yml.dist. The file path is relative to the shop root. You can also pass a YAML string on the command line.');
 
-$help = <<<HELP
+        $help = <<<HELP
 <info>YAML example:</info>
 ```yaml
 config:
@@ -73,8 +73,7 @@ If you want, you can also specify __a YAML string on the command line instead of
 ../vendor/bin/oxrun module:multiset $'config:\n  1:\n    foobar: barfoo\n' --shopId=1
 ```    
 HELP;
-            $this->setHelp($help);
-                        
+        $this->setHelp($help);
     }
     
     /**
@@ -131,5 +130,4 @@ HELP;
     {
         return $this->getApplication()->bootstrapOxid();
     }
-
 }

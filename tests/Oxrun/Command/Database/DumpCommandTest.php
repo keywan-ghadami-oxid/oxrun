@@ -63,5 +63,4 @@ class DumpCommandTest extends TestCase
         $this->assertContains('DROP TABLE IF EXISTS `oxuser`;', $dump);
         $this->assertContains('DROP TABLE IF EXISTS `oxvendor`;', $dump);
     }
-
 }

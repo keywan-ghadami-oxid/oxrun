@@ -170,5 +170,4 @@ class DebugCommand extends Command
 
         return true;
     }
-
 }

@@ -26,5 +26,4 @@ class ListCommandTest extends TestCase
         $this->assertContains('Table', $commandTester->getDisplay());
         $this->assertContains('Type', $commandTester->getDisplay());
     }
-
 }

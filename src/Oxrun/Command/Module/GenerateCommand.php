@@ -50,5 +50,4 @@ class GenerateCommand extends Command
     {
         return $this->getApplication()->bootstrapOxid();
     }
-
 }

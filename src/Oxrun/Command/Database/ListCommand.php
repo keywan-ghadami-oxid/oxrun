@@ -16,7 +16,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-
 class ListCommand extends Command
 {
     protected function configure()
@@ -67,7 +66,8 @@ HELP;
             $existsTable = array_map(
                 function ($row) {
                     return $row[0];
-                }, $tablenames
+                },
+                $tablenames
             );
             $list = implode("$quote, $quote", $existsTable);
             $output->writeln($quote . $list . $quote);

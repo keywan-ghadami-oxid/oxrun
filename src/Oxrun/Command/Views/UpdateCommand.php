@@ -51,5 +51,4 @@ class UpdateCommand extends Command
         $application = $this->getApplication();
         return $application->bootstrapOxid();
     }
-
 }

@@ -50,10 +50,9 @@ class IolyCommand extends Command
     public function isEnabled()
     {
         $ioly = getenv('IOLY_PHP');
-        if (!empty($ioly) && is_file($ioly) ) {
+        if (!empty($ioly) && is_file($ioly)) {
             return true;
         }
         return false;
     }
-
 }

@@ -46,7 +46,7 @@ class ImportCommand extends Command
                 'Force cleanup on error',
                 null
             );
-$help = <<<HELP
+        $help = <<<HELP
 <info>Info:</info>
 Imports all config values from yaml files, interacts with the
 [Modules Config](https://github.com/OXIDprojects/oxid_modules_config/) module,
@@ -75,5 +75,4 @@ HELP;
     {
         return $this->getApplication()->bootstrapOxid();
     }
-
 }

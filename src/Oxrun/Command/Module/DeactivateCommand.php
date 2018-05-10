@@ -79,7 +79,6 @@ class DeactivateCommand extends Command
                 $output->writeLn("<error>Exception deactiating module: $sModule for shop $shopId: {$ex->getMessage()}</error>");
             }
         }
-
     }
     /**
      * @return bool
@@ -88,5 +87,4 @@ class DeactivateCommand extends Command
     {
         return $this->getApplication()->bootstrapOxid();
     }
-
 }

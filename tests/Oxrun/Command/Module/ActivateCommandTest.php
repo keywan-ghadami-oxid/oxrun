@@ -56,7 +56,5 @@ class ActivateCommandTest extends TestCase
         );
 
         $this->assertContains('Cannot load module not_and_existing_module', $commandTester->getDisplay());
-
     }
-
 }

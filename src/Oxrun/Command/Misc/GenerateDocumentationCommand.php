@@ -16,7 +16,6 @@ use Symfony\Component\Console\Tester\CommandTester;
  */
 class GenerateDocumentationCommand extends Command
 {
-
     protected $skipCommands = array('help');
 
     protected $skipLines = array(
@@ -57,7 +56,8 @@ class GenerateDocumentationCommand extends Command
 
         $availableCommands = array_keys($this->getApplication()->all());
         $availableCommands = array_filter(
-            $availableCommands, function ($commandName) {
+            $availableCommands,
+            function ($commandName) {
                 if (in_array($commandName, $this->skipCommands)) {
                     return false;
                 }

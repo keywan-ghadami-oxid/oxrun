@@ -8,7 +8,6 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 class UpdateCommandTest extends TestCase
 {
-
     public function testExecute()
     {
         $app = new Application();

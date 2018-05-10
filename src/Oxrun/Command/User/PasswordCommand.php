@@ -58,5 +58,4 @@ class PasswordCommand extends Command
     {
         return $this->getApplication()->bootstrapOxid();
     }
-
 }

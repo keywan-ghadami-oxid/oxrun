@@ -25,5 +25,4 @@ class QueryCommandTest extends TestCase
 
         $this->assertContains('oxdefaultadmin', $commandTester->getDisplay());
     }
-
 }

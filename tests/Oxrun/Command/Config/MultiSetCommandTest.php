@@ -25,5 +25,4 @@ class MultiSetCommandTest extends TestCase
 
         $this->assertContains("Config foobar for shop 1 set", $commandTester->getDisplay());
     }
-
 }

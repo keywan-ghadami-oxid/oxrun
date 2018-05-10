@@ -940,3 +940,29 @@ The unit tests require a configured shop and a database. To start the tests, run
 ```bash
 ../vendor/bin/phpunit /var/www/html/oxid6/vendor/smxsm/oxrun/
 ```
+
+# Update command documentation in this README file
+
+You can generate the documentation for all available commands with
+
+```bash
+../vendor/bin/oxrun misc:generate:documentation > commands.txt
+```
+
+and then just copy/paste the contents of "commands.txt" into the README :)
+
+# Build the oxrun.phar file
+
+If you want to build the phar file, you can run
+
+```bash
+php build
+```
+
+in the base directory. Make sure you set
+
+```bash
+phar.readonly = Off
+```
+
+in your php.ini file, otherwise PHP will refuse to create the file!

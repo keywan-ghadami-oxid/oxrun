@@ -7,7 +7,6 @@
 
 namespace Oxrun\Helper;
 
-
 class DatabaseConnectionTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -39,7 +38,7 @@ class DatabaseConnectionTest extends \PHPUnit_Framework_TestCase
         $this->testSubject->setHost('127.0.0.1:3336');
 
         self::assertEquals('127.0.0.1', $this->testSubject->getHost());
-        self::assertEquals(3336,        $this->testSubject->getPort());
+        self::assertEquals(3336, $this->testSubject->getPort());
     }
 
     public function testHasNotConnected()
