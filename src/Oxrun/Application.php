@@ -124,7 +124,7 @@ class Application extends BaseApplication
         $input = new ArgvInput();
         if ($input->getParameterOption('--shopDir')) {
             $oxBootstrap = $input->getParameterOption('--shopDir'). '/bootstrap.php';
-            if ($this->checkBootstrapOxidInclude($oxBootstrap) === true ) {
+            if ($this->checkBootstrapOxidInclude($oxBootstrap) === true) {
                 return true;
             }
             return false;
@@ -134,7 +134,7 @@ class Application extends BaseApplication
         $currentWorkingDirectory = getcwd();
         do {
             $oxBootstrap = $currentWorkingDirectory . '/bootstrap.php';
-            if ($this->checkBootstrapOxidInclude($oxBootstrap) === true ) {
+            if ($this->checkBootstrapOxidInclude($oxBootstrap) === true) {
                 return true;
                 break;
             }
@@ -148,7 +148,7 @@ class Application extends BaseApplication
      *
      * @param String $oxBootstrap Path to oxid bootstrap.php
      * @param bool   $skipViews   Add 'blSkipViewUsage' to OXIDs config.
-     * 
+     *
      * @return bool
      */
     public function checkBootstrapOxidInclude($oxBootstrap)
@@ -242,7 +242,7 @@ class Application extends BaseApplication
      * Completely switch shop
      *
      * @param string $shopId The shop id
-     * 
+     *
      * @return void
      */
     public function switchToShopId($shopId)
@@ -283,7 +283,7 @@ class Application extends BaseApplication
         $moduleVariablesCache = new \OxidEsales\Eshop\Core\FileCache();
         $shopIdCalculator = new \OxidEsales\Eshop\Core\ShopIdCalculator($moduleVariablesCache);
 
-        if (($shopId != $shopIdCalculator->getShopId()) 
+        if (($shopId != $shopIdCalculator->getShopId())
             || ($shopId != \OxidEsales\Eshop\Core\Registry::getConfig()->getShopId())
         ) {
             throw new \Exception('Failed to switch to subshop id ' . $shopId . " Calculate ID: " . $shopIdCalculator->getShopId() . " Config ShopId: " . \OxidEsales\Eshop\Core\Registry::getConfig()->getShopId());
@@ -295,13 +295,13 @@ class Application extends BaseApplication
      *
      * @param string $ymlString The relative file path, from shop root OR a YAML string
      * @param string $basePath  Alternative root dir path, if a file is used
-     * 
+     *
      * @return string
      */
     public function getYaml($ymlString, $basePath = '')
     {
         // is it a file?
-        if (strpos(strtolower($ymlString), '.yml') !== false 
+        if (strpos(strtolower($ymlString), '.yml') !== false
             || strpos(strtolower($ymlString), '.yaml') !== false
         ) {
             if ($basePath == '') {

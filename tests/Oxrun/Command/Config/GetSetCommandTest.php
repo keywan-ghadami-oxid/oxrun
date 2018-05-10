@@ -101,7 +101,5 @@ class GetSetCommandTest extends TestCase
         );
 
         $this->assertContains('iTopNaviCatCount has value 99', $commandTester->getDisplay());
-
     }
-
 }

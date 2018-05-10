@@ -49,5 +49,4 @@ class ShopGetCommand extends Command
     {
         return $this->getApplication()->bootstrapOxid();
     }
-
 }

@@ -24,5 +24,4 @@ class ListCommandTest extends TestCase
 
         $this->assertContains('paypal', $commandTester->getDisplay());
     }
-
 }

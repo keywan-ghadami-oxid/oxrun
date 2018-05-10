@@ -19,15 +19,15 @@ use Symfony\Component\Yaml\Yaml;
 
 /**
  * Class MultiActivateCommand
- * 
+ *
  * @package Oxrun\Command\Module
- * 
+ *
  * This command can be used to activate multiple modules for multiple shops.
  * You need to pass it a valid yaml file as argument, relative to the shop root dir,
  * containing either a "whitelist" or a
  * "blacklist" with shop ids and module ids, e.g.
  * whitelist:
- *   1: 
+ *   1:
  *     - oepaypal
  *     - oxpspaymorrow
  *   2:
@@ -50,7 +50,7 @@ class MultiActivateCommand extends Command
             ->addOption('skipClear', 'c', InputOption::VALUE_NONE, "Skip cache clearing.")
             ->addArgument('module', InputArgument::REQUIRED, 'YAML module list filename or YAML string');
 
-$help = <<<HELP
+        $help = <<<HELP
 <info>usage:</info>
 <comment>oxrun module:multiactivate configs/modules.yml</comment>
 - to activate all modules defined in the file "configs/modules.yml" based
@@ -77,7 +77,7 @@ If you want, you can also specify __a YAML string on the command line instead of
 ../vendor/bin/oxrun module:multiactivate $'whitelist:\n  1:\n    - oepaypal\n' --shopId=1
 ```
 HELP;
-            $this->setHelp($help);
+        $this->setHelp($help);
     }
 
     /**
@@ -111,8 +111,8 @@ HELP;
                                 'command' => 'module:deactivate',
                                 'module'    => $moduleId,
                                 '--shopId'  => $shopId,
-                            );              
-                            $deactivateInput = new ArrayInput($arguments);          
+                            );
+                            $deactivateInput = new ArrayInput($arguments);
                             $app->find('module:deactivate')->run($deactivateInput, $output);
                             if (!$skipClear) {
                                 $app->find('cache:clear')->run(new ArgvInput([]), $output);
@@ -122,8 +122,8 @@ HELP;
                             'command' => 'module:activate',
                             'module'    => $moduleId,
                             '--shopId'  => $shopId,
-                        );              
-                        $activateInput = new ArrayInput($arguments);          
+                        );
+                        $activateInput = new ArrayInput($arguments);
                         $app->find('module:activate')->run($activateInput, $output);
                     }
                 }
@@ -145,8 +145,8 @@ HELP;
                                 'command' => 'module:deactivate',
                                 'module'    => $moduleId,
                                 '--shopId'  => $shopId,
-                            );              
-                            $deactivateInput = new ArrayInput($arguments);          
+                            );
+                            $deactivateInput = new ArrayInput($arguments);
                             $app->find('module:deactivate')->run($deactivateInput, $output);
                             if (!$skipClear) {
                                 $app->find('cache:clear')->run(new ArgvInput([]), $output);
@@ -156,8 +156,8 @@ HELP;
                             'command' => 'module:activate',
                             'module'    => $moduleId,
                             '--shopId'  => $shopId,
-                        );              
-                        $activateInput = new ArrayInput($arguments);          
+                        );
+                        $activateInput = new ArrayInput($arguments);
                         $app->find('module:activate')->run($activateInput, $output);
                     }
                 }

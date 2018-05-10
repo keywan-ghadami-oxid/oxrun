@@ -260,7 +260,7 @@ HELP;
     /**
      * @param string $flag
      * @param array $tables
-     * 
+     *
      * @return array
      */
     protected function addCommandFlag($flag, $tables)
@@ -311,7 +311,8 @@ HELP;
         $existsTable = array_map(
             function ($row) {
                 return $row[0];
-            }, $result
+            },
+            $result
         );
         return $existsTable;
     }
@@ -354,6 +355,4 @@ HELP;
     {
         return preg_replace('/-p[^ ]+/', '-p', $command);
     }
-
 }
-

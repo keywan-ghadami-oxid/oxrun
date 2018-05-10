@@ -47,13 +47,13 @@ class ListCommand extends Command
         $oxModuleList = oxNew(\OxidEsales\Eshop\Core\Module\ModuleList::class);
 
         $activeModules = array_keys($oxModuleList->getActiveModuleInfo());
-        $deactiveModules = $oxModuleList->getDisabledModules();;
+        $deactiveModules = $oxModuleList->getDisabledModules();
         $activeModules = array_map(
             function ($item) {
                 // check if really active
                 $oModule = oxNew('oxModule');
                 if ($oModule->load($item) && $oModule->isActive()) {
-                    return array($item, 'yes');                
+                    return array($item, 'yes');
                 }
                 return array($item, 'no');
             },
@@ -86,5 +86,4 @@ class ListCommand extends Command
     {
         return $this->getApplication()->bootstrapOxid();
     }
-
 }

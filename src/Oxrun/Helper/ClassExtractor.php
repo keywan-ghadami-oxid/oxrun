@@ -8,7 +8,6 @@ namespace Oxrun\Helper;
  */
 class ClassExtractor extends \FilterIterator
 {
-
     protected $allowedExtensions = array(
         'php',
     );
@@ -47,5 +46,4 @@ class ClassExtractor extends \FilterIterator
 
         return true;
     }
-
 }

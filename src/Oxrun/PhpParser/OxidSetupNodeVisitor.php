@@ -11,7 +11,6 @@ use PhpParser\Node;
  */
 class OxidSetupNodeVisitor extends \PhpParser\NodeVisitorAbstract
 {
-
     protected $path;
 
     /**
@@ -27,7 +26,6 @@ class OxidSetupNodeVisitor extends \PhpParser\NodeVisitorAbstract
      */
     public function leaveNode(Node $node)
     {
-
         if ($node instanceof PhpParser\Node\Expr\Assign) {
             if (isset($node->var->name) && $node->var->name == 'sqlDir') {
                 $node->expr->value = $this->path . 'sql/';
@@ -45,7 +43,8 @@ class OxidSetupNodeVisitor extends \PhpParser\NodeVisitorAbstract
         if ($node instanceof PhpParser\Node\Stmt\Class_) {
             if ($node->name == 'oxSetupController') {
                 $prop = new \PhpParser\Node\Stmt\Property(
-                    \PhpParser\Node\Stmt\Class_::MODIFIER_PROTECTED, array(
+                    \PhpParser\Node\Stmt\Class_::MODIFIER_PROTECTED,
+                    array(
                         new \PhpParser\Node\Stmt\PropertyProperty('_oView')
                     )
                 );
@@ -58,6 +57,5 @@ class OxidSetupNodeVisitor extends \PhpParser\NodeVisitorAbstract
                 $node->name->parts[0] = '@session_start';
             }
         }
-
     }
 }

@@ -35,14 +35,12 @@ class FixCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-
         $shopId = $input->getOption('shopId');
         if ($shopId) {
             $this->getApplication()->switchToShopId($shopId);
         }
         
         $output->writeLn("<error>To be implemented</error>");
-
     }
 
     /**
@@ -52,5 +50,4 @@ class FixCommand extends Command
     {
         return $this->getApplication()->bootstrapOxid();
     }
-
 }

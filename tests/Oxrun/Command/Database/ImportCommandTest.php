@@ -8,7 +8,6 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 class ImportCommandTest extends TestCase
 {
-
     protected $sql = <<<'EOD'
 DROP TABLE IF EXISTS `oxrun_db_import_test`;
 CREATE TABLE `oxrun_db_import_test` (
@@ -63,5 +62,4 @@ EOD;
 
         $this->assertContains("File file_does_not_exist does not exist.", $commandTester->getDisplay());
     }
-
 }

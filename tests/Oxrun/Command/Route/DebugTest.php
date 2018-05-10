@@ -6,6 +6,8 @@
  * Time: 22:52
  */
 
+namespace Oxrun\Command\Route;
+
 use Oxrun\Application;
 use Oxrun\TestCase;
 use Oxrun\Command\Route;
@@ -120,7 +122,7 @@ class DebugTest extends TestCase
     {
         /** @var \OxidEsales\Eshop\Core\SeoDecoder $oxSeoEncoder */
         $oxSeoEncoder = oxNew(\OxidEsales\Eshop\Core\SeoEncoder::class);
-        $oxSeoEncoder->getDynamicUrl('index.php?cl=news&amp;fnc=render', 'newspage/',  0);
+        $oxSeoEncoder->getDynamicUrl('index.php?cl=news&amp;fnc=render', 'newspage/', 0);
 
         $this->commandTester->execute(
             array(
@@ -136,7 +138,7 @@ class DebugTest extends TestCase
     {
         /** @var \OxidEsales\Eshop\Core\SeoDecoder $oxSeoEncoder */
         $oxSeoEncoder = oxNew(\OxidEsales\Eshop\Core\SeoEncoder::class);
-        $oxSeoEncoder->getDynamicUrl('index.php?cl=classdontexists', 'class/dont/exists/',  0);
+        $oxSeoEncoder->getDynamicUrl('index.php?cl=classdontexists', 'class/dont/exists/', 0);
 
         $this->commandTester->execute(
             array(
@@ -152,7 +154,7 @@ class DebugTest extends TestCase
     {
         /** @var \OxidEsales\Eshop\Core\SeoEncoder $oxSeoEncoder */
         $oxSeoEncoder = oxNew(\OxidEsales\Eshop\Core\SeoEncoder::class);
-        $oxSeoEncoder->getDynamicUrl('index.php?cl=news&amp;fnc=nameXYX', 'method/in/class/dont/exists/',  0);
+        $oxSeoEncoder->getDynamicUrl('index.php?cl=news&amp;fnc=nameXYX', 'method/in/class/dont/exists/', 0);
 
         $this->commandTester->execute(
             array(

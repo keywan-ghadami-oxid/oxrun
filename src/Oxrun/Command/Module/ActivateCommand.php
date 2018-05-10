@@ -11,9 +11,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Class ActivateCommand
- * 
+ *
  * @package Oxrun\Command\Module
- * 
+ *
  */
 class ActivateCommand extends Command
 {
@@ -75,7 +75,7 @@ class ActivateCommand extends Command
                     $output->writeLn("<info>Module $sModule activated for shopId $shopId.</info>");
                 } else {
                     $output->writeLn("<error>Module $sModule could not be activated for shopId $shopId.</error>");
-                }    
+                }
             } catch (\Exception $ex) {
                 $output->writeLn("<error>Exception actiating module: $sModule for shop $shopId: {$ex->getMessage()}</error>");
             }
@@ -91,5 +91,4 @@ class ActivateCommand extends Command
     {
         return $this->getApplication()->bootstrapOxid();
     }
-
 }

@@ -46,7 +46,7 @@ class ExportCommand extends Command
                 'Force cleanup on error',
                 null
             );
-$help = <<<HELP
+        $help = <<<HELP
 <info>Info:</info>
 Exports all config values to yaml files, interacts with the
 [Modules Config](https://github.com/OXIDprojects/oxid_modules_config/) module,
@@ -75,5 +75,4 @@ HELP;
     {
         return $this->getApplication()->bootstrapOxid();
     }
-
 }

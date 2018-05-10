@@ -16,9 +16,9 @@ trait ModuleListCheckTrait
 
     /**
      * Check if we have Modulelist, else create new.
-     * 
+     *
      * @param string $shopId The shop id.
-     * 
+     *
      * @return null
      */
     protected function checkModulelist($shopId = null)

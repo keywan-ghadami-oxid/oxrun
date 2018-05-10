@@ -79,5 +79,4 @@ HELP;
     {
         return function_exists('exec') && $this->getApplication()->bootstrapOxid();
     }
-
 }

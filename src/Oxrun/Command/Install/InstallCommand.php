@@ -177,7 +177,6 @@ class InstallCommand extends Command
             $code = $prettyPrinter->prettyPrintFile($stmts);
             file_put_contents($target . '/setup/oxrunsetup.php', $code, FILE_APPEND);
         } catch (PhpParser\Error $e) {
-
         }
         // patch version 4.10.2 and above (broken in official installer)
         if (isset($version)) {
@@ -245,7 +244,6 @@ class InstallCommand extends Command
         $client = new Client();
 
         try {
-
             $githubToken = getenv('GITHUB_TOKEN');
             if ($githubToken) {
                 $request = $client->createRequest('GET', $version['zip'] . '?access_token=' . $githubToken, array('save_to' => $file));
@@ -254,9 +252,7 @@ class InstallCommand extends Command
             }
 
             $request->getEmitter()->on('progress', function (ProgressEvent $e) use (&$progressBar, $output) {
-
                 if (null === $progressBar && $e->downloadSize !== 0) {
-
                     ProgressBar::setPlaceholderFormatterDefinition('max', function (ProgressBar $bar) {
                         return $this->formatSize($bar->getMaxSteps());
                     });
@@ -280,13 +276,10 @@ class InstallCommand extends Command
                 }
                 if ($progressBar) {
                     $progressBar->setProgress($e->downloaded);
-
                 }
-
             });
 
             $client->send($request);
-
         } catch (ClientException $e) {
             throw new \RuntimeException(sprintf(
                 "There was an error downloading:\n%s",
@@ -334,5 +327,4 @@ EOT;
         file_put_contents($target . '/pkg.info', $pkgInfo);
         file_put_contents($target . '/pkg.rev', $oxidVersion['sha']);
     }
-
 }

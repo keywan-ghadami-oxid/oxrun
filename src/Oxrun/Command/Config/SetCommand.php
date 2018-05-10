@@ -76,5 +76,4 @@ class SetCommand extends Command
     {
         return $this->getApplication()->bootstrapOxid();
     }
-
 }
