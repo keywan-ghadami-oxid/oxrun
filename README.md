@@ -53,6 +53,7 @@ __Please note:__ since activating modules and updating config values requires a 
 
 
 
+
 misc:phpstorm:metadata
 ----------------------
 
@@ -121,6 +122,51 @@ Requires php exec and MySQL CLI tools installed on your system.
 * Is value required: no
 * Description: Raw output
 * Default: `false`
+
+db:anonymize
+------------
+
+* Description: Anonymize relevant OXID db tables
+* Usage:
+
+  * `db:anonymize [--debug] [-d|--domain [DOMAIN]] [-k|--keepdomain [KEEPDOMAIN]]`
+
+Anonymizes user relevant data in the OXID database.
+Relevant tables are:
+Array
+(
+    [0] => oxnewssubscribed
+    [1] => oxuser
+    [2] => oxvouchers
+    [3] => oxaddress
+    [4] => oxorder
+)
+
+Requires php exec and MySQL CLI tools installed on your system.
+
+### Options:
+
+**debug:**
+
+* Name: `--debug`
+* Accept value: no
+* Is value required: no
+* Description: Debug SQL queries generated
+* Default: `false`
+
+**domain:**
+
+* Name: `--domain`
+* Shortcut: `-d`
+* Is value required: no
+* Description: Domain to use for all anonymized usernames /email addresses, default is "@oxrun.com"
+
+**keepdomain:**
+
+* Name: `--keepdomain`
+* Shortcut: `-k`
+* Is value required: no
+* Description: Domain which should NOT be anonymized, default is "@foobar.com". Data with this domain in the email address will NOT be anonymized.
 
 db:import
 ---------
@@ -273,7 +319,7 @@ Installs the shop, for OXID 6 composer is used instead!
 * Name: `--installationFolder`
 * Is value required: no
 * Description: Installation folder
-* Default: `'/var/www/html/gerstaecker-oxid6/source'`
+* Default: `'/var/www/html/gerstaecker-oxid6'`
 
 **dbHost:**
 
