@@ -142,7 +142,6 @@ Array
     [4] => oxorder
 )
 
-Requires php exec and MySQL CLI tools installed on your system.
 
 ### Options:
 
@@ -319,7 +318,7 @@ Installs the shop, for OXID 6 composer is used instead!
 * Name: `--installationFolder`
 * Is value required: no
 * Description: Installation folder
-* Default: `'/var/www/html/gerstaecker-oxid6'`
+* Default: `'/var/www/html/gerstaecker-oxid6/source'`
 
 **dbHost:**
 

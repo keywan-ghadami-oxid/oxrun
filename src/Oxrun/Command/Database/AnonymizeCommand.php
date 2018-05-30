@@ -34,6 +34,8 @@ class AnonymizeCommand extends Command
                 'OXUSERNAME' => 'email',
                 'OXFNAME' => 'string',
                 'OXLNAME' => 'string',
+                'OXCOMPANY' => 'string',
+                'OXADDINFO' => 'string',
                 'OXSTREET' => 'string',
                 'OXFON' => 'string',
                 'OXPRIVFON' => 'string',
@@ -51,6 +53,7 @@ class AnonymizeCommand extends Command
         'oxaddress' => [
             'fields' => [
                 'OXCOMPANY' => 'string',
+                'OXADDINFO' => 'string',
                 'OXFNAME' => 'string',
                 'OXLNAME' => 'string',
                 'OXSTREET' => 'string',
@@ -67,6 +70,7 @@ class AnonymizeCommand extends Command
                 'OXBILLLNAME' => 'string',
                 'OXBILLUSTID' => 'string',
                 'OXBILLSTREET' => 'string',
+                'OXBILLADDINFO' => 'string',
                 'OXBILLFON' => 'string',
                 'OXBILLCITY' => 'string',
                 'OXDELCOMPANY' => 'string',
@@ -122,7 +126,6 @@ class AnonymizeCommand extends Command
 Anonymizes user relevant data in the OXID database.
 Relevant tables are:
 {$tables}
-Requires php exec and MySQL CLI tools installed on your system.
 HELP;
         $this->setHelp($help);
     }
@@ -160,13 +163,8 @@ HELP;
             $this->anonymousDomain = $domain;
         }
         
-        // allow empty password
-        $dbPwd = \OxidEsales\Eshop\Core\Registry::getConfig()->getConfigParam('dbPwd');
-        if (!empty($dbPwd)) {
-            $dbPwd = '-p' . $dbPwd;
-        }
-
         foreach ($this->anonymousTables as $tableName => $tableData) {
+
             $cols = $tableData['fields'];
             $where = $tableData['where'];
             $where = str_replace('{{keepDomain}}', $this->keepDomain, $where);
@@ -188,26 +186,11 @@ HELP;
                 }
             }
             $sQ .= " WHERE $where; ";
-            $sQ = $this->getEscapedSql($sQ);
 
             if ($input->getOption('debug') === true) {
                 $output->writeln('<info>' . $sQ . '</info>');
             }
-
-            $exec = sprintf(
-                "mysql -h%s %s -u%s %s -e '%s' 2>&1",
-                \OxidEsales\Eshop\Core\Registry::getConfig()->getConfigParam('dbHost'),
-                $dbPwd,
-                \OxidEsales\Eshop\Core\Registry::getConfig()->getConfigParam('dbUser'),
-                \OxidEsales\Eshop\Core\Registry::getConfig()->getConfigParam('dbName'),
-                $sQ
-            );
-            exec($exec, $commandOutput, $returnValue);
-    
-            if ($returnValue > 0) {
-                $output->writeln('<error>' . implode(PHP_EOL, $commandOutput) . '</error>');
-                break;
-            }
+            $returnValue = \OxidEsales\Eshop\Core\DatabaseProvider::getDb()->execute($sQ);
         }
         $output->writeln('<info>Anonymizing done.</info>');
     }
@@ -217,6 +200,6 @@ HELP;
      */
     public function isEnabled()
     {
-        return function_exists('exec') && $this->getApplication()->bootstrapOxid();
+        return $this->getApplication()->bootstrapOxid();
     }
 }
