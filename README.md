@@ -317,7 +317,7 @@ Installs the shop, for OXID 6 composer is used instead!
 * Name: `--installationFolder`
 * Is value required: no
 * Description: Installation folder
-* Default: `'/var/www/html/gerstaecker-oxid6/source'`
+* Default: `'/var/www/html/oxid'`
 
 **dbHost:**
 
@@ -881,12 +881,18 @@ Deactivate and activate a module
 module:fix
 ----------
 
-* Description: Fixes a module __[NOT IMPLEMENTED YET]__
+* Description: Fixes a module
 * Usage:
 
-  * `module:fix [--shopId [SHOPID]] [--] <module>`
+  * `module:fix [--shopId [SHOPID]] [-b|--base-shop] [-x|--no-debug] [-a|--all] [--] [<module>]`
 
-Fixes a module __[NOT IMPLEMENTED YET]__
+Usage: module:fix [options] <module_id> [<other_module_id>...]
+This command fixes information stored in database of modules
+Available options:
+  -a, --all         Passes all modules
+  -b, --base-shop   Fix only on base shop
+  --shopId=<shop_id>  Specifies in which shop to fix states
+  -x, --no-debug    No debug output
 
 ### Arguments:
 
@@ -902,6 +908,33 @@ Fixes a module __[NOT IMPLEMENTED YET]__
 * Name: `--shopId`
 * Is value required: no
 * Description: <none>
+
+**base-shop:**
+
+* Name: `--base-shop`
+* Shortcut: `-b`
+* Accept value: no
+* Is value required: no
+* Description: <none>
+* Default: `false`
+
+**no-debug:**
+
+* Name: `--no-debug`
+* Shortcut: `-x`
+* Accept value: no
+* Is value required: no
+* Description: <none>
+* Default: `false`
+
+**all:**
+
+* Name: `--all`
+* Shortcut: `-a`
+* Accept value: no
+* Is value required: no
+* Description: <none>
+* Default: `false`
 
 user:password
 -------------

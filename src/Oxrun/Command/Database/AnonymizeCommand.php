@@ -164,7 +164,6 @@ HELP;
         }
         
         foreach ($this->anonymousTables as $tableName => $tableData) {
-
             $cols = $tableData['fields'];
             $where = $tableData['where'];
             $where = str_replace('{{keepDomain}}', $this->keepDomain, $where);
