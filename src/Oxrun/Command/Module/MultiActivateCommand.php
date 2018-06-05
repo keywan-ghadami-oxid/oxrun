@@ -135,6 +135,11 @@ HELP;
                 $aModules = $oxModuleList->getModulesFromDir($oConfig->getModulesDir());
                 foreach ($aModules as $moduleId => $aModuleData) {
                     foreach ($moduleValues['blacklist'] as $shopId => $moduleIds) {
+                        if ($activateShopId && $activateShopId != $shopId) {
+                            $output->writeLn("<comment>Skipping shop '$shopId'!</comment>");
+                            continue;
+                        }
+                            
                         if (in_array($moduleId, $moduleIds)) {
                             $output->writeLn("<comment>Module blacklisted: '$moduleId' - skipping!</comment>");
                             continue 2;

@@ -317,7 +317,7 @@ Installs the shop, for OXID 6 composer is used instead!
 * Name: `--installationFolder`
 * Is value required: no
 * Description: Installation folder
-* Default: `'/var/www/html/oxid'`
+* Default: `'/var/www/html/gerstaecker-oxid6/source'`
 
 **dbHost:**
 
@@ -884,13 +884,14 @@ module:fix
 * Description: Fixes a module
 * Usage:
 
-  * `module:fix [--shopId [SHOPID]] [-b|--base-shop] [-x|--no-debug] [-a|--all] [--] [<module>]`
+  * `module:fix [--shopId [SHOPID]] [-b|--base-shop] [-x|--no-debug] [-r|--reset] [-a|--all] [--] [<module>]`
 
 Usage: module:fix [options] <module_id> [<other_module_id>...]
 This command fixes information stored in database of modules
 Available options:
   -a, --all         Passes all modules
   -b, --base-shop   Fix only on base shop
+  -r, --reset   Reset module, remove entries from config arrays
   --shopId=<shop_id>  Specifies in which shop to fix states
   -x, --no-debug    No debug output
 
@@ -922,6 +923,15 @@ Available options:
 
 * Name: `--no-debug`
 * Shortcut: `-x`
+* Accept value: no
+* Is value required: no
+* Description: <none>
+* Default: `false`
+
+**reset:**
+
+* Name: `--reset`
+* Shortcut: `-r`
 * Accept value: no
 * Is value required: no
 * Description: <none>

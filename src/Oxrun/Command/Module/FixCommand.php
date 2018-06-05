@@ -15,6 +15,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Output\NullOutput;
+use Symfony\Component\Console\Helper\Table;
 
 use OxidEsales\EshopCommunity\Core\Exception\InputException;
 use Oxrun\Helper\ModuleStateFixer;
@@ -38,6 +39,7 @@ class FixCommand extends Command
             ->addOption('shopId', null, InputOption::VALUE_OPTIONAL, null)
             ->addOption('base-shop', 'b', InputOption::VALUE_NONE, null)
             ->addOption('no-debug', 'x', InputOption::VALUE_NONE, null)
+            ->addOption('reset', 'r', InputOption::VALUE_NONE, null)
             ->addOption('all', 'a', InputOption::VALUE_NONE, null)
             ->addArgument('module', InputArgument::OPTIONAL, 'Module name');
     }
@@ -56,6 +58,8 @@ class FixCommand extends Command
         $sHelp .= '  -a, --all         Passes all modules';
         $sHelp .= "\n";
         $sHelp .= '  -b, --base-shop   Fix only on base shop';
+        $sHelp .= "\n";
+        $sHelp .= '  -r, --reset   Reset module, remove entries from config arrays';
         $sHelp .= "\n";
         $sHelp .= '  --shopId=<shop_id>  Specifies in which shop to fix states';
         $sHelp .= "\n";
@@ -105,6 +109,10 @@ class FixCommand extends Command
             $oModuleStateFixer->setConfig($oConfig);
             $oModuleStateFixer->setDebugOutput($oDebugOutput);
             foreach ($aModuleIds as $sModuleId) {
+                if ($input->getOption('reset')) {
+                    $this->resetModule($oConfig, $sModuleId, $sShopId, $output);
+                }
+
                 if (!$oModule->load($sModuleId)) {
                     $oDebugOutput->writeLn("[DEBUG] {$sModuleId} can not be loaded - skipping");
                     continue;
@@ -129,6 +137,59 @@ class FixCommand extends Command
         }
         
         $output->writeLn("<info>Modules fixed</info>");
+    }
+
+    /**
+     * Reset all module entries
+     *
+     * @param Config $oConfig
+     * @param string $sModuleId
+     * @param int $sShopId
+     * @param OutputInterface $output
+     * @return void
+     */
+    protected function resetModule($oConfig, $sModuleId, $sShopId, OutputInterface $output)
+    {
+        $aModulePaths = $oConfig->getShopConfVar('aModules', sShopId);
+        // check disabled modules
+        $aDisabledModules = $oConfig->getShopConfVar('aDisabledModules');
+        $aDisabledModulesDisplay = array_map(
+            function ($item) {
+                return array($item);
+            },
+            $aDisabledModules
+        );
+        $table = new Table($output);
+        $table
+            ->setHeaders(array('Disabled Modules'))
+            ->setRows($aDisabledModulesDisplay);
+        $table->render();
+
+        $iOldKey = array_search($sModuleId, $aDisabledModules);
+        if ($iOldKey !== false) {
+            unset($aDisabledModules[$iOldKey]);
+            $oConfig->saveShopConfVar('arr', 'aDisabledModules', $aDisabledModules, sShopId);
+            $output->writeLn("[INFO] Module {$sModuleId} removed from aDisabledModules");
+        }
+        
+        // check module paths
+        $aModulePaths = $oConfig->getShopConfVar('aModulePaths');
+        $aModulePathsDisplay = array_map(function ($key, $val) {
+            return array(
+                $key, $val
+            );
+        }, array_keys($aModulePaths), $aModulePaths);
+        $table = new Table($output);
+        $table
+            ->setHeaders(array('Module', 'Path'))
+            ->setRows($aModulePathsDisplay);
+        $table->render();
+
+        if (array_key_exists($sModuleId, $aModulePaths)) {
+            unset($aModulePaths[$sModuleId]);
+            $oConfig->saveShopConfVar('arr', 'aModulePaths', $aModulePaths, sShopId);
+            $output->writeLn("[INFO] Module {$sModuleId} removed from aModulePaths");
+        }
     }
 
     /**
