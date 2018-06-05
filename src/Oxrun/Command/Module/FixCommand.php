@@ -110,7 +110,9 @@ class FixCommand extends Command
             $oModuleStateFixer->setDebugOutput($oDebugOutput);
             foreach ($aModuleIds as $sModuleId) {
                 if ($input->getOption('reset')) {
+                    // only reset module, in case e.g. module paths are wrong in DB!
                     $this->resetModule($oConfig, $sModuleId, $sShopId, $output);
+                    continue;
                 }
 
                 if (!$oModule->load($sModuleId)) {
@@ -150,9 +152,9 @@ class FixCommand extends Command
      */
     protected function resetModule($oConfig, $sModuleId, $sShopId, OutputInterface $output)
     {
-        $aModulePaths = $oConfig->getShopConfVar('aModules', sShopId);
+        $aModulePaths = $oConfig->getShopConfVar('aModules', $sShopId);
         // check disabled modules
-        $aDisabledModules = $oConfig->getShopConfVar('aDisabledModules');
+        $aDisabledModules = $oConfig->getShopConfVar('aDisabledModules', $sShopId);
         $aDisabledModulesDisplay = array_map(
             function ($item) {
                 return array($item);
@@ -168,12 +170,12 @@ class FixCommand extends Command
         $iOldKey = array_search($sModuleId, $aDisabledModules);
         if ($iOldKey !== false) {
             unset($aDisabledModules[$iOldKey]);
-            $oConfig->saveShopConfVar('arr', 'aDisabledModules', $aDisabledModules, sShopId);
+            $oConfig->saveShopConfVar('arr', 'aDisabledModules', $aDisabledModules, $sShopId);
             $output->writeLn("[INFO] Module {$sModuleId} removed from aDisabledModules");
         }
         
         // check module paths
-        $aModulePaths = $oConfig->getShopConfVar('aModulePaths');
+        $aModulePaths = $oConfig->getShopConfVar('aModulePaths', $sShopId);
         $aModulePathsDisplay = array_map(function ($key, $val) {
             return array(
                 $key, $val
@@ -187,7 +189,7 @@ class FixCommand extends Command
 
         if (array_key_exists($sModuleId, $aModulePaths)) {
             unset($aModulePaths[$sModuleId]);
-            $oConfig->saveShopConfVar('arr', 'aModulePaths', $aModulePaths, sShopId);
+            $oConfig->saveShopConfVar('arr', 'aModulePaths', $aModulePaths, $sShopId);
             $output->writeLn("[INFO] Module {$sModuleId} removed from aModulePaths");
         }
     }
