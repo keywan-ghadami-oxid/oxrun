@@ -1013,6 +1013,56 @@ Updates a cms page
 * Is value required: yes
 * Description: Content active
 
+log:exceptionlog
+----------------
+
+* Description: Read EXCEPTION_LOG.txt and display entries.
+* Usage:
+
+  * `log:exceptionlog [-l|--lines [LINES]] [-f|--filter [FILTER]] [-r|--raw] [-t|--tail]`
+
+Usage: log:exceptionlog [options]
+Read EXCEPTION_LOG.txt and display entries.
+Available options:
+  -t, --tail         Display last lines in file
+  -l, --lines   Number of lines to show
+  -f, --filter  String to search for / filter
+  -r, --raw   Raw output, no table
+
+### Options:
+
+**lines:**
+
+* Name: `--lines`
+* Shortcut: `-l`
+* Is value required: no
+* Description: <none>
+
+**filter:**
+
+* Name: `--filter`
+* Shortcut: `-f`
+* Is value required: no
+* Description: <none>
+
+**raw:**
+
+* Name: `--raw`
+* Shortcut: `-r`
+* Accept value: no
+* Is value required: no
+* Description: <none>
+* Default: `false`
+
+**tail:**
+
+* Name: `--tail`
+* Shortcut: `-t`
+* Accept value: no
+* Is value required: no
+* Description: <none>
+* Default: `false`
+
 views:update
 ------------
 
