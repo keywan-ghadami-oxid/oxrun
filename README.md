@@ -1021,13 +1021,7 @@ log:exceptionlog
 
   * `log:exceptionlog [-l|--lines [LINES]] [-f|--filter [FILTER]] [-r|--raw] [-t|--tail]`
 
-Usage: log:exceptionlog [options]
 Read EXCEPTION_LOG.txt and display entries.
-Available options:
-  -t, --tail         Display last lines in file
-  -l, --lines   Number of lines to show
-  -f, --filter  String to search for / filter
-  -r, --raw   Raw output, no table
 
 ### Options:
 
@@ -1036,14 +1030,14 @@ Available options:
 * Name: `--lines`
 * Shortcut: `-l`
 * Is value required: no
-* Description: <none>
+* Description: Number of lines to show
 
 **filter:**
 
 * Name: `--filter`
 * Shortcut: `-f`
 * Is value required: no
-* Description: <none>
+* Description: Filter string to search for
 
 **raw:**
 
@@ -1051,7 +1045,7 @@ Available options:
 * Shortcut: `-r`
 * Accept value: no
 * Is value required: no
-* Description: <none>
+* Description: Show raw text, no table
 * Default: `false`
 
 **tail:**
@@ -1060,7 +1054,7 @@ Available options:
 * Shortcut: `-t`
 * Accept value: no
 * Is value required: no
-* Description: <none>
+* Description: Show last lines first
 * Default: `false`
 
 views:update

@@ -61,26 +61,12 @@ class ExceptionLogCommand extends Command
         $this
             ->setName('log:exceptionlog')
             ->setDescription('Read EXCEPTION_LOG.txt and display entries.')
-            ->addOption('lines', 'l', InputOption::VALUE_OPTIONAL, null)
-            ->addOption('filter', 'f', InputOption::VALUE_OPTIONAL, null)
-            ->addOption('raw', 'r', InputOption::VALUE_NONE, null)
-            ->addOption('tail', 't', InputOption::VALUE_NONE, null);
+            ->addOption('lines', 'l', InputOption::VALUE_OPTIONAL, 'Number of lines to show')
+            ->addOption('filter', 'f', InputOption::VALUE_OPTIONAL, 'Filter string to search for')
+            ->addOption('raw', 'r', InputOption::VALUE_NONE, 'Show raw text, no table')
+            ->addOption('tail', 't', InputOption::VALUE_NONE, 'Show last lines first');
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getHelp()
-    {
-        $sHelp = "Usage: log:exceptionlog [options]\n";
-        $sHelp .= "Read EXCEPTION_LOG.txt and display entries.\n";
-        $sHelp .= "Available options:\n";
-        $sHelp .= "  -t, --tail         Display last lines in file\n";
-        $sHelp .= "  -l, --lines   Number of lines to show\n";
-        $sHelp .= "  -f, --filter  String to search for / filter\n";
-        $sHelp .= "  -r, --raw   Raw output, no table";
-        return $sHelp;
-    }
     /**
      * Executes the current command.
      *
