@@ -49,7 +49,7 @@ class ExceptionLogCommand extends Command
         // see https://stackoverflow.com/questions/11044136/right-way-to-escape-backslash-in-php-regex
         'ERROR_TYPE' => '/\[.*\]\s\[([a-z]*)\]\s\[([\x5c a-zA-Z]*)\]/', // e.g. [type Error] or [stacktrace]
         'ERROR_CODE' => '/\[code\s([0-9]*)]/', // e.g. [code 0]
-        'FILE' => '/\[file\s([A-Za-z0-9\/\.-]*)]/',
+        'FILE' => '/\[file\s([%^A-Za-z0-9\/\.\-\_]*)]/',
         'TRACE' => '/(#[0-9]*\s.*)/sim',
     ];
 
