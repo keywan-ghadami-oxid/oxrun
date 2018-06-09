@@ -17,6 +17,34 @@ PHP 5.6 is required, PHP 7 or newer is recommended.
 
 If you are using composer (which you probably are), just add `"smxsm/oxrun": "dev-develop"` to your composer.json and run composer install.
 
+You can use the Composer CLI for this:
+
+```bash
+# add repo
+composer config repositories.smxsm/oxrun vcs https://github.com/smxsm/oxrun
+# add to require-dev
+composer require --dev --no-scripts --no-update smxsm/oxrun:dev-develop
+# update only new, with verbose output
+composer update -n -vv
+```
+
+Or, you can edit the OXID composer.json file manually:
+
+```json
+    "repositories": {
+      ...
+        "smxsm/oxrun": {
+            "type": "vcs",
+            "url": "https://github.com/smxsm/oxrun"
+        }
+    },
+    ...
+    "require-dev": {
+        ...
+        "smxsm/oxrun": "dev-develop"
+    },
+```
+
 You can then use oxrun by calling `vendor/bin/oxrun` or add `vendor/bin` to your $PATH to be able to just call `oxrun`.
 
 # Usage
