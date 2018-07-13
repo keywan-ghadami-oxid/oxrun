@@ -173,6 +173,22 @@ class Application extends BaseApplication
         return false;
     }
 
+    /**
+     * Add custom command folder in OXID source directory
+     *
+     * @return void
+     */
+    public function addCustomCommandDir()
+    {
+        $commandSourceDir          = __DIR__ . '/../../../../../source/oxruncmds';
+        $recursiveIteratorIterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($commandSourceDir));
+        $regexIterator             = new \RegexIterator($recursiveIteratorIterator, '/.*Command\.php$/');
+        
+        foreach ($regexIterator as $commandPath) {
+            $commandClass = str_replace(array($commandSourceDir, '/', '.php'), array('', '\\', ''), $commandPath);
+            $this->add(new $commandClass);
+        }
+    }
 
     /**
      * @return mixed|string

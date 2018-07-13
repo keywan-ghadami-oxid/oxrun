@@ -77,6 +77,66 @@ You can use it e.g. to help you with an OXID 6 installation or deployment, e.g.:
 This could activate some modules in different subshops and set a bunch of config variables e.g.
 __Please note:__ since activating modules and updating config values requires a filled database and a valid config.inc.php file, you'd have to do some more voodoo during the OXID setup routine to make the above example work! But it should give you an idea how to use oxrun "multiactivate" and "multiset" :)
 
+# Roll your own
+
+Of course, you want to add your own commands to oxrun! To do so without having to touch the vendor lib or forking the whole repository, follow these steps:
+
+* inside your OXID "source" directory, add a folder "oxruncmds"
+* inside this folder, add the folder structure "Oxrun\Command\YOUR_PACKAGE", e.g. "Oxrun\Command\Example"
+
+![Folder structure](doc/img/oxruncmds.png)
+
+* add a command file to your new subfolder, e.g. "ExampleCommand.php".
+* now add the code to your command file, e.g.:
+
+```php
+<?php
+namespace Oxrun\Command\Example;
+
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+
+/**
+ * Class ExampleCommand
+ * @package Oxrun\Command\Example
+ */
+class ExampleCommand extends Command
+{
+    /**
+     * Configures the current command.
+     */
+    protected function configure()
+    {
+        $this
+            ->setName('example:hello')
+            ->setDescription('Example command')
+            ->addOption('shopId', null, InputOption::VALUE_OPTIONAL, null);
+    }
+    /**
+     * Executes the current command.
+     *
+     * @param InputInterface $input An InputInterface instance
+     * @param OutputInterface $output An OutputInterface instance
+     */
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $output->writeln("<info>Hello, example</info>");
+    }
+    /**
+     * @return bool
+     */
+    public function isEnabled()
+    {
+        return $this->getApplication()->bootstrapOxid();
+    }
+}
+```
+
+All the command files you add here should be loaded auto-magically!
+
 # Available commands
 
 

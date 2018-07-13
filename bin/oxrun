@@ -21,7 +21,7 @@ foreach ($regexIterator as $commandPath) {
     $commandClass = str_replace(array($commandSourceDir, '/', '.php'), array('', '\\', ''), $commandPath);
     $application->add(new $commandClass);
 }
-
+$application->addCustomCommandDir();
 $application->run();
 
 __HALT_COMPILER();
