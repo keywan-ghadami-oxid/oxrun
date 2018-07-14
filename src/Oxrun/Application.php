@@ -181,6 +181,9 @@ class Application extends BaseApplication
     public function addCustomCommandDir()
     {
         $commandSourceDir          = __DIR__ . '/../../../../../source/oxruncmds';
+        if (!file_exists($commandSourceDir)) {
+            return;
+        }
         $recursiveIteratorIterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($commandSourceDir));
         $regexIterator             = new \RegexIterator($recursiveIteratorIterator, '/.*Command\.php$/');
         
