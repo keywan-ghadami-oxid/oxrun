@@ -180,7 +180,7 @@ class Application extends BaseApplication
      */
     public function addCustomCommandDir()
     {
-        $commandSourceDir          = __DIR__ . '/../../../../../source/oxruncmds';
+        $commandSourceDir          = __DIR__ . '/../../../../../source/commands';
         if (!file_exists($commandSourceDir)) {
             return;
         }
