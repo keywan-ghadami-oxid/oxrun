@@ -141,6 +141,7 @@ All the command files you add here should be loaded auto-magically!
 
 
 
+
 misc:phpstorm:metadata
 ----------------------
 
@@ -405,7 +406,7 @@ Installs the shop, for OXID 6 composer is used instead!
 * Name: `--installationFolder`
 * Is value required: no
 * Description: Installation folder
-* Default: `'/var/www/html/gerstaecker-oxid6/source'`
+* Default: `'/var/www/html/oxrun-demo/source'`
 
 **dbHost:**
 
@@ -1034,6 +1035,18 @@ Available options:
 * Description: <none>
 * Default: `false`
 
+user:create
+-----------
+
+* Description: Creates a new user
+* Usage:
+
+  * `user:create`
+
+Creates a new user
+
+### Options:
+
 user:password
 -------------
 
@@ -1156,6 +1169,7 @@ views:update
 Updates the views
 
 ### Options:
+
 
 
 # Run the unit tests
